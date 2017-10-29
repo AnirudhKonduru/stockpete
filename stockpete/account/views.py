@@ -7,7 +7,8 @@ from .forms import RegisterForm
 from persons.models import Customer
 from account.models import Account
 # Create your views here.
-
+def portfolio(request):
+    return render(request, "account/portfolio.html")
 
 def login(request):
     if not request.method == 'POST':
@@ -28,11 +29,11 @@ def login(request):
 
 def register(request):
     if not request.method == 'POST':
-        return render(request, "account/register.html", {'form': RegisterForm})
+        return render(request, "account/registration.html", {'form': RegisterForm})
     else:
         form = RegisterForm(request.POST)
         if not form.is_valid():
-            return render(request, "account/register.html", {'form': RegisterForm, 'message': form.errors})
+            return render(request, "account/registration.html", {'form': RegisterForm, 'message': form.errors})
 
         user = User.objects.create_user(username=form.cleaned_data["username"],
                                         email=form.cleaned_data["email"],

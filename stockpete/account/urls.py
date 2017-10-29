@@ -20,4 +20,5 @@ from . import views
 urlpatterns = [
     url(r'^register/', views.register),
     url(r'^login/', views.login),
+url(r'^portfolio/', views.portfolio),
 ]
