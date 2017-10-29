@@ -1,20 +1,21 @@
 from django.db import models
 from stocks.models import Stock
 from persons.models import Customer, Employee
+from account.models import Account
 
 
 # Create your models here.
 class Order(models.Model):
     TYPES = [
-        ("BUY", "BUY"),
-        ("SELL", "SELL")
+        ("BUY", "buy"),
+        ("SELL", "sell")
     ]
     stock = models.ForeignKey(Stock, on_delete=models.CASCADE)
     type = models.CharField(max_length=50, choices=TYPES)
     num = models.PositiveIntegerField(default=0)
     timestamp = models.DateTimeField(auto_now=True)
-    customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
-    employee = models.ForeignKey(Employee, on_delete=models.CASCADE)
+    account = models.ForeignKey(Account, on_delete=models.CASCADE, default=None, null=True)
+    employee = models.ForeignKey(Employee, on_delete=models.CASCADE, default=None, null=True)
 
     def __str__(self):
         return str(self.stock)+" : "+str(self.type)+" : "+str(self.customer)

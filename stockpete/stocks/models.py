@@ -11,5 +11,9 @@ class Stock(models.Model):
     num_avail_shares = models.PositiveIntegerField()
     stock_type = models.CharField(max_length=100)
 
+    @property
+    def cur_price(self):
+        return self.price
+
     def __str__(self):
         return self.symbol

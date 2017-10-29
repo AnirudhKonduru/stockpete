@@ -1,6 +1,4 @@
-from django.contrib.auth.forms import AuthenticationForm
 from django import forms
-from django.core.validators import RegexValidator
 
 
 class RegisterForm(forms.Form):
