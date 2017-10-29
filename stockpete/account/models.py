@@ -5,10 +5,11 @@ from stocks.models import Stock
 
 # Create your models here.
 class Account(models.Model):
-    create_date = models.DateField(auto_created=True)
+    username = models.CharField(max_length=20)
+    create_date = models.DateField(auto_now_add=True)
     customer = models.ForeignKey(Customer)
-    password_hash = models.CharField(max_length=1000)
     card_no = models.CharField(max_length=16)
+    card_exp = models.DateField(default="2040-01-01")
 
     def __str__(self):
         return str(self.customer)

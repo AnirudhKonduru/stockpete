@@ -5,9 +5,8 @@ from django.core.validators import RegexValidator
 # Create your models here.
 
 class Person(models.Model):
-    first_name = models.CharField(max_length=20)
+    first_name = models.CharField(max_length=20, unique=True)
     last_name = models.CharField(max_length=20)
-    ph_validator = RegexValidator(regex="^[89]")
     ph_num = models.CharField(max_length=10)
     address = models.CharField(max_length=100)
     city = models.CharField(max_length=20)
@@ -23,7 +22,7 @@ class Person(models.Model):
 
 class Customer(Person):
     email = models.CharField(max_length=50)
-    rating = models.DecimalField(decimal_places=2, max_digits=4)
+    rating = models.DecimalField(decimal_places=2, max_digits=4, default=10)
 
 
 class Employee(Person):
