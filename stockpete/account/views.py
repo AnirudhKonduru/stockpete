@@ -12,6 +12,11 @@ from stocks.models import Stock
 # Create your views here.
 
 
+
+def index(request):
+    return render(request, 'static/index.html')
+
+
 def loginView(request):
     if not request.method == 'POST':
         return render(request, "account/login.html")

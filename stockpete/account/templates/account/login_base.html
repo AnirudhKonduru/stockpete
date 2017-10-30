@@ -1,0 +1,67 @@
+<!DOCTYPE HTML>
+<!--
+	Projection by TEMPLATED
+	templated.co @templatedco
+	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
+-->
+
+<html>
+    {% load static %}
+	<head>
+		<title>{{ title }}</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="stylesheet" href="{%  static "assets/css/main.css" %}"/>
+	</head>
+	<body>
+
+		<!-- Header -->
+			<header id="header">
+				<div class="inner">
+					<a href="/index" class="logo"><strong>{{ title }}</strong>2017</a>
+					<nav id="nav">
+						<a href="/index">Home</a>
+						<a href="/login">Login</a>
+						<a href="/register">Register</a>
+					</nav>
+					<a href="#navPanel" class="navPanelToggle"><span class="fa fa-bars"></span></a>
+				</div>
+			</header>
+
+		<!-- Banner -->
+			<section id="banner">
+				<div class="inner">
+					<header>
+						<h1>Introducing, Stockpete 2017</h1>
+					</header>
+
+					<div class="flex ">
+
+                        {% block body %}
+
+                        {% endblock %}
+						<div>
+							<img src=" {%  static "assets/img/stockpete_logo.png" %}">
+							<h3>Stockpete</h3>
+							<p>Invest Today!</p>
+						</div>
+
+					</div>
+
+					<footer>
+						<a href="#" class="button">Get Started</a>
+					</footer>
+				</div>
+			</section>
+
+
+		<!-- Footer -->
+
+		<!-- Scripts -->
+			<script src=" {%  static "assets/js/jquery.min.js" %}"></script>
+			<script src=" {%  static "assets/js/skel.min.js" %}"></script>
+			<script src=" {%  static "assets/js/util.js" %}"></script>
+			<script src=" {%  static "assets/js/main.js" %}"></script>
+
+	</body>
+</html>
