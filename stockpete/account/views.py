@@ -16,15 +16,18 @@ from stocks.models import Stock
 def index(request):
     return render(request, 'static/index.html')
 
+def done(request):
+    return render(request, 'account/done.html')
+
 
 def loginView(request):
     if not request.method == 'POST':
-        return render(request, "account/login.html")
+        return render(request, "account/login1.html")
 
     user = authenticate(username=request.POST["username"],
                         password=request.POST["password"])
     if user is None:
-        return render(request, "account/login.html", {'message': "Invalid Credentials"})
+        return render(request, "account/login1.html", {'message': "Invalid Credentials"})
 
     account = Account.objects.get(username=request.POST["username"])
     request.session["account"] = account.pk
@@ -36,11 +39,11 @@ def loginView(request):
 
 def registerView(request):
     if not request.method == 'POST':
-        return render(request, "account/register.html", {'form': RegisterForm})
+        return render(request, "account/registration.html", {'form': RegisterForm})
     else:
         form = RegisterForm(request.POST)
         if not form.is_valid():
-            return render(request, "account/register.html", {'form': RegisterForm, 'message': form.errors})
+            return render(request, "account/registration.html", {'form': RegisterForm, 'message': form.errors})
 
         user = User.objects.create_user(username=form.cleaned_data["username"],
                                         email=form.cleaned_data["email"],
@@ -54,7 +57,7 @@ def registerView(request):
                                            city=form.cleaned_data["city"],
                                            state=form.cleaned_data["state"],
                                            zip_code=form.cleaned_data["zip_code"],
-                                           email="anirudh@konduru.com",
+                                           email=form.cleaned_data["email"],#"anirudh@konduru.com",
                                            )
         customer.save()
         account = Account.objects.create(username=form.cleaned_data["username"],
@@ -67,7 +70,7 @@ def registerView(request):
         request.session["account"] = account.pk
         request.session["customer"] = customer.pk
         request.session["username"] = user.username
-        return HttpResponseRedirect("/portfolio")
+        return HttpResponseRedirect("/thanks")
 
 
 regis = template.Library()
@@ -82,6 +85,7 @@ regis.filter('mult', mult)
 
 
 #@login_required(login_url="/login/")
+
 def portfolioView(request):
     if request.user.is_authenticated:
         account = Account.objects.get(pk=request.session["account"])
@@ -96,4 +100,7 @@ def portfolioView(request):
         #return render(request, "account/login.html", {"message": own_portfolio})
         return render(request, "account/portfolio.html", {"portfolio": own_portfolio, "stocks": stocks})
     else:
-        return render(request, "account/login.html", {"message": "Not logged in"})
+        return render(request, "account/login1.html", {"message": "Not logged in"})
+        
+def thankView(request):
+	 return render(request, "account/Thanks.html")

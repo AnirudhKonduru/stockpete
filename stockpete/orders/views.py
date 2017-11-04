@@ -38,4 +38,4 @@ def buySellView(request):
             Order(stock=stock, account=account, type=type, num=num).save()
             if p.num == 0:
                 p.delete()
-        return HttpResponseRedirect("/portfolio")
+        return HttpResponseRedirect(reverse('/portfolio'))
