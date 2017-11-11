@@ -5,7 +5,7 @@ from django.core.validators import RegexValidator
 # Create your models here.
 
 class Person(models.Model):
-    first_name = models.CharField(max_length=20, unique=True)
+    first_name = models.CharField(max_length=20)
     last_name = models.CharField(max_length=20)
     ph_num = models.CharField(max_length=10)
     address = models.CharField(max_length=100)
