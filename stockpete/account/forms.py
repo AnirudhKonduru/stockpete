@@ -17,3 +17,9 @@ class RegisterForm(forms.Form):
     card_exp = forms.DateField()
 
     email = forms.CharField(max_length=50)
+
+
+class LoginForm(forms.Form):
+    username = forms.CharField(label="Username", max_length=20)
+    password = forms.CharField(widget=forms.PasswordInput)
+    remember_me = forms.BooleanField()

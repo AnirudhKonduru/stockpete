@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Bare - Start Bootstrap Template</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <style>
+    @import url(http://fonts.googleapis.com/css?family=Roboto);
+
+        body {
+            padding-top: 54px;
+        }
+        @media (min-width: 992px) {
+            body {
+                padding-top: 56px;
+            }
+        }
+
+        .form-signin
+        {
+            max-width: 330px;
+            padding: 15px;
+            margin: 0 auto;
+        }
+        .form-signin .form-signin-heading, .form-signin .checkbox
+        {
+            margin-bottom: 10px;
+        }
+        .form-signin .checkbox
+        {
+            font-weight: normal;
+        }
+        .form-signin .form-control
+        {
+            position: relative;
+            font-size: 16px;
+            height: auto;
+            padding: 10px;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+        .form-signin .form-control:focus
+        {
+            z-index: 2;
+        }
+        .form-signin input[type="text"]
+        {
+            margin-bottom: -1px;
+            border-bottom-left-radius: 0;
+            border-bottom-right-radius: 0;
+        }
+        .form-signin input[type="password"]
+        {
+            margin-bottom: 10px;
+            border-top-left-radius: 0;
+            border-top-right-radius: 0;
+        }
+        .account-wall
+        {
+            margin-top: 20px;
+            padding: 40px 0px 20px 0px;
+            background-color: #f7f7f7;
+            -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+            -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+            box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+        }
+        .login-title
+        {
+            color: #555;
+            font-size: 18px;
+            font-weight: 400;
+            display: block;
+        }
+        .profile-img
+        {
+            width: 96px;
+            height: 96px;
+            margin: 0 auto 10px;
+            display: block;
+            -moz-border-radius: 50%;
+            -webkit-border-radius: 50%;
+            border-radius: 50%;
+        }
+        .need-help
+        {
+            margin-top: 10px;
+        }
+        .new-account
+        {
+            display: block;
+            margin-top: 10px;
+        }
+        .form {
+            width: 300px;
+            margin: 0 auto;
+        }
+        .main-login{
+            background-color: #fff;
+            /* shadows and rounded borders */
+            -moz-border-radius: 2px;
+            -webkit-border-radius: 2px;
+            border-radius: 2px;
+            -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+            -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+            box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .main-center{
+            margin-top: 30px;
+            margin: 0 auto;
+            max-width: 330px;
+            padding: 40px 40px;
+        }
+    </style>
+
+  </head>
+
+  <body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+      <div class="container">
+        <a class="navbar-brand" href="#">STOCKಪೇಟೆ</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+<!--             <li class="nav-item active"> -->
+<!--               <a class="nav-link" href="#">Home -->
+<!--                 <span class="sr-only">(current)</span> -->
+<!--               </a> -->
+<!--             </li> -->
+<!--             <li class="nav-item"> -->
+<!--               <a class="nav-link" href="#">About</a> -->
+<!--             </li> -->
+            <li class="nav-item">
+              <a class="nav-link" href="/persons/done1">Login</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/persons/done2">Signup</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Page Content -->
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 text-center">
+          <h1 class="mt-5">Online Stock Trading System</h1>
+            <div class="row" align="center">
+            <div class="col-sm-12" align="center">
+
+                {% block content %}
+                {% endblock %}
+
+            </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-restmod/1.1.11/angular-restmod-bundle.min.js"></script>
+
+  </body>
+
+</html>

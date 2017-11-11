@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from django import template
-from .forms import RegisterForm
+from .forms import RegisterForm, LoginForm
 
 from persons.models import Customer
 from account.models import Account, Portfolio
@@ -13,21 +13,22 @@ from stocks.models import Stock
 
 
 def index(request):
-    return render(request, 'static/index.html')
-
-
-def done(request):
-    return render(request, 'account/done.html')
+    return render(request, 'static/auth_base.html')
 
 
 def login_view(request):
     if not request.method == 'POST':
-        return render(request, "account/login.html")
+        return render(request, "account/login.html", {'form': LoginForm})
 
-    user = authenticate(username=request.POST["username"],
-                        password=request.POST["password"])
+    user = authenticate(username=request.POST.get("username"),
+                        password=request.POST.get("password"))
     if user is None:
-        return render(request, "account/login.html", {'message': "Invalid Credentials"})
+        return render(request, "account/login.html", {'form': LoginForm,
+                                                      'message': "Invalid Credentials"
+                                                                 + request.POST.get("username")
+                                                                 + request.POST.get("password")
+                                                      }
+                      )
 
     account = Account.objects.get(username=request.POST["username"])
     request.session["account"] = account.pk
@@ -70,7 +71,7 @@ def register_view(request):
         request.session["account"] = account.pk
         request.session["customer"] = customer.pk
         request.session["username"] = user.username
-        return HttpResponseRedirect("/portfolio/")
+        return HttpResponseRedirect("/login", {"message": "Registered Successfully. Login to continue"})
 
 
 regis = template.Library()
@@ -88,7 +89,7 @@ regis.filter('mult', mult)
 
 def portfolio_view(request):
     if request.user.is_authenticated:
-        return render(request, "account/login.html", {"message": request.POST})
+        #return render(request, "account/login.html", {"message": str(dict(request.session).for )+str(request.user)})
         account = Account.objects.get(pk=request.session["account"])
         try:
             own_portfolio = Portfolio.objects.filter(account=account)
