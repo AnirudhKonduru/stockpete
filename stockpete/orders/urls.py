@@ -18,6 +18,5 @@ from django.contrib import admin
 from . import views
 
 urlpatterns = [
-    url(r'^order/', views.buySellView),
-    # url(r'^sell/', views.sellView),
+    url(r'^order/', views.order_view),
 ]

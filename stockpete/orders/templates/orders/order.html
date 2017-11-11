@@ -1,15 +1,15 @@
-<!DOCTYPE html>
+{% extends 'account/base.html' %}
+{% block content %}
+    <form action="/order/" method="POST">
+        {% for field in form %}
+            <b>{{ field.label_tag }}</b>
+            <br>
+            {{ field }}
+            {{ field.errors }}
+            {{ feild.non_field_errors }}
+            <br>
+        {% endfor %}
 
-<html lang="en-us" >
-<head>
-<title>Login | Stockpete</title>
-</head>
-
-
-<body>
-
-<form action="/order/" method="POST">
-    {{ form }}
-    {{ message }}
-    <input type="submit", value="Confirm"></input>
-</form>
+        <input type="submit" , value="Confirm"></input>
+    </form>
+{% endblock %}

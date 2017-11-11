@@ -4,12 +4,13 @@ from stocks.models import Stock
 from account.models import Account
 from account.models import Portfolio
 from .models import Order
+
+
 # Create your views here.
-def buySellView(request):
+def order_view(request):
     if request.method == "GET":
-        CHOICES = ('')
         form = buySellForm()
-        return render(request, "orders/order.html", {"form": form, "message": "buy"})
+        return render(request, "orders/order.html", {"form": form})
 
     if request.method == "POST":
         num = int(request.POST["num"])
@@ -32,10 +33,10 @@ def buySellView(request):
                 p = Portfolio(account=account, stock=stock, num=0)
                 p.save()
             if p.num < num:
-                return render(request, "orders/order.html", {"form": buySellForm(), "message": "Insufficient stocks!"})
+                return render(request, "orders/order.html", {"form": buySellForm(), "error": ["Insufficient stocks!"]})
             p.num = p.num-num;
             p.save()
             Order(stock=stock, account=account, type=type, num=num).save()
             if p.num == 0:
                 p.delete()
-        return HttpResponseRedirect(reverse('/portfolio'))
+        return HttpResponseRedirect('/portfolio')
