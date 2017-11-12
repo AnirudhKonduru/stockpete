@@ -1,9 +1,14 @@
 {% extends 'account/base.html' %}
 {% block content %}
     <div class="container">
+      <img class="profile-img" 
+                      src="http://1.bp.blogspot.com/-MyRZIItV2VU/UEZDI6kpU0I/AAAAAAAAAHk/2HyqvoQrhYQ/s1600/Bulls%2Bn%2BBears%2BLogo.JPG"  height="200"
+alt="">
+
         <form class="form" action="/register/" method="POST">
             {% if field.errors %}
                 <div class="my-notify-warning">
+                <br>
                     {{ field.non_field_errors }}
                 </div>
             {% endif %}
@@ -21,6 +26,7 @@
                     </div>
                 {% endif %}
             {% endfor %}
+            
             <div class="form-footer">
                 <input type="submit" class="btn" value="Sign Up"/>
             </div>

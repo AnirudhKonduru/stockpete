@@ -1,15 +1,19 @@
 {% extends 'account/base.html' %}
 {% block content %}
+  <div class="col-sm-8">
     <form action="/order/" method="POST">
-        {% for field in form %}
+     
+        {% for field in form %} 
             <b>{{ field.label_tag }}</b>
             <br>
             {{ field }}
             {{ field.errors }}
             {{ feild.non_field_errors }}
             <br>
-        {% endfor %}
-
-        <input type="submit" , value="Confirm"></input>
+       {% endfor %} 
+<br>
+        <input type="submit"  value="Confirm"></input>
+    
     </form>
+    </div>
 {% endblock %}

@@ -1,6 +1,37 @@
 {% extends 'account/base.html' %}
 
 {% block content %}
+<div class="col-sm-12">
+<table class="table table-striped">
+  <h1>Portfolio</h1>
+    {% if portfolio %}
+        Number of Stocks invested in: {{ portfolio|length }}
+    {% else %}
+        No Stocks bought.
+    {% endif %}
+    <thead>
+      <tr>
+        <th>Symbol</th>
+        <th>Number</th>
+        <th>Price</th>
+        <th>Total Value</th>
+      </tr>
+    </thead>
+    <tbody>
+       {% for item in portfolio %}
+        <tr>
+            <td>{{ item.stock.symbol }}</td>
+            <td>{{ item.num }}</td>
+            <td>{{ item.stock.price }}</td>
+            <td>Rs. {% widthratio item.stock.price 1 item.num %}</td>
+        </tr>
+
+    {% endfor %}
+    
+    </tbody>
+  </table>
+  </div>
+<!--    
     <h1>Portfolio</h1>
     {% if portfolio %}
         Number of Stocks invested in: {{ portfolio|length }}
@@ -24,5 +55,5 @@
             <td>Rs. {% widthratio item.stock.price 1 item.num %}</td>
         </tr>
 
-    {% endfor %}
+    {% endfor %}-->	
 {% endblock %}
