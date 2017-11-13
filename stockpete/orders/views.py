@@ -17,7 +17,7 @@ def order_view(request):
         type = request.POST["type"]
         stock = Stock.objects.get(pk=request.POST["stock"])
         user = request.user
-        account = Account.objects.get(username=user.username)
+        account = Account.objects.get(user=user)
         if type == 'BUY':
             try:
                 p = Portfolio.objects.get(account=account, stock=stock)
@@ -37,6 +37,6 @@ def order_view(request):
             p.num = p.num-num;
             p.save()
             Order(stock=stock, account=account, type=type, num=num).save()
-            if p.num == 0:
-                p.delete()
+            Portfolio.objects.filter(num=0).delete()
+
         return HttpResponseRedirect('/portfolio')

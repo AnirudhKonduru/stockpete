@@ -1,27 +1,31 @@
 {% extends 'account/base.html' %}
 {% block content %}
     <div class="container">
-          <form class="form-signin" action="/account/" method="POST">
-                        <div class="my-notify-warning">
-                            {{ form.non_field_errors }}
-                        </div>
-                        {% for field in form %}
-                            <b>{{ field.label_tag }}</b>
-                            <br>
-                             <fieldset class="form-fieldset ui-input __second">
-                            {{ field }}
-                            <br>
-                            </fieldset>
-                            {% if field.errors %}
-                                <div class="my-notify-warning">
-                                    {{ field.errors }}
-                                </div>
-                            {% endif %}
-                        {% endfor %}
-                        <fieldset class="form-fieldset ui-input __second">
-                        <input type="submit" value="Save"/>
-                        </fieldset>
-                    </form>
+        <form class="form" action="/account/" method="POST">
+            {% if form.non_field_errors %}
+            <div class="my-notify-warning">
+                <br>
+                {{ form.non_field_errors }}
+            </div>
+        {% endif %}
+            {% for field in form %}
+                <fieldset class="form-fieldset ui-input __second">
+                    {{ field }}
+                    <label for="{{ field.auto_id }}">
+                        <span data-text="{{ field.label }}">{{ field.label }}</span>
+                    </label>
+                </fieldset>
+                <br>
+                {% if field.errors %}
+                    <div class="my-notify-warning">
+                        {{ field.errors }}
+                    </div>
+                {% endif %}
+            {% endfor %}
+            <fieldset class="form-fieldset ui-input __second">
+                <input type="submit" class="btn" value="Save"/>
+            </fieldset>
+        </form>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 {% endblock %}

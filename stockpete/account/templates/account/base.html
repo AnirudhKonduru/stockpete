@@ -2,8 +2,8 @@
 <html lang="en">
 
 <head>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
@@ -14,13 +14,6 @@
     <!-- Bootstrap core CSS -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.min.css"
           rel="stylesheet">
-
-    <script>
-        var $input = $('.form-fieldset > input');
-        $input.blur(function (e) {
-            $(this).toggleClass('filled', !!$(this).val());
-        });
-    </script>
 
     <style>
         body {
@@ -46,7 +39,7 @@
         }
 
         .container {
-/*             max-width: 320px; */
+            max-width: 320px;
             margin: 0 auto;
             padding: 20px 16px 40px 16px;
             transform: translateZ(0);
@@ -127,7 +120,7 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             backface-visibility: hidden;
-            perspective: initial;
+            perspective: unset;
             transform: translateZ(0);
             transition: background-position 300ms cubic-bezier(0.215, 0.61, 0.355, 1);
         }
@@ -326,6 +319,11 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
+            <img class="profile-img"
+                 src="https://i.imgur.com/7mPz3Xt.png"
+                 height="50"
+                 alt="">
+
             <ul class="navbar-nav ml-auto">
 
                 {% if user.is_authenticated %}
@@ -386,9 +384,15 @@
 </div>
 
 <!-- Bootstrap core JavaScript -->
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-restmod/1.1.11/angular-restmod-bundle.min.js"></script>
-
+<script>
+    var $input = $('.form-fieldset > input');
+    $input.blur(function (e) {
+        $(this).toggleClass('filled', !$(this).val());
+    });
+</script>
 </body>
 
 </html>

@@ -1,15 +1,11 @@
 {% extends 'account/base.html' %}
 {% block content %}
     <div class="container">
-      <img class="profile-img" 
-                      src="http://1.bp.blogspot.com/-MyRZIItV2VU/UEZDI6kpU0I/AAAAAAAAAHk/2HyqvoQrhYQ/s1600/Bulls%2Bn%2BBears%2BLogo.JPG"  height="200"
-alt="">
-
         <form class="form" action="/register/" method="POST">
-            {% if field.errors %}
+            {% if form.non_field_errors %}
                 <div class="my-notify-warning">
                 <br>
-                    {{ field.non_field_errors }}
+                    {{ form.non_field_errors }}
                 </div>
             {% endif %}
             {% for field in form %}
@@ -33,5 +29,4 @@ alt="">
 
         </form>
     </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 {% endblock %}

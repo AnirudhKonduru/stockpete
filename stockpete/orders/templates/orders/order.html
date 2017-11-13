@@ -1,19 +1,32 @@
 {% extends 'account/base.html' %}
 {% block content %}
-  <div class="col-sm-8">
-    <form action="/order/" method="POST">
-     
-        {% for field in form %} 
-            <b>{{ field.label_tag }}</b>
-            <br>
-            {{ field }}
-            {{ field.errors }}
-            {{ feild.non_field_errors }}
-            <br>
-       {% endfor %} 
-<br>
-        <input type="submit"  value="Confirm"></input>
-    
-    </form>
+    <div class="container">
+        <form class="form" action="/order/" method="POST">
+            {% if form.non_field_errors %}
+                <div class="my-notify-warning">
+                <br>
+                    {{ form.non_field_errors }}
+                </div>
+            {% endif %}
+            {% for field in form %}
+                <fieldset class="form-fieldset ui-input __second">
+                    {{ field }}
+                    <label for="{{ field.auto_id }}">
+                        <span data-text="{{ field.label }}">{{ field.label }}</span>
+                    </label>
+                </fieldset>
+                <br>
+                {% if field.errors %}
+                    <div class="my-notify-warning">
+                        {{ field.errors }}
+                    </div>
+                {% endif %}
+            {% endfor %}
+
+            <div class="form-footer">
+                <input type="submit" class="btn" value="Confirm"/>
+            </div>
+
+        </form>
     </div>
 {% endblock %}
