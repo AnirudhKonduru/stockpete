@@ -20,7 +20,7 @@
             background-color: #363E4A;
             font-family: "Avenir Next", "Avenir", "Helvetica Neue", Helvetica, Arial, sans-serif;
             font-size: 16px;
-            color: #ffffff;
+            color: #FFFFFF;
             line-height: 1.5;
         }
 
@@ -39,7 +39,7 @@
         }
 
         .container {
-            max-width: 320px;
+{#            max-width: 320px;#}
             margin: 0 auto;
             padding: 20px 16px 40px 16px;
             transform: translateZ(0);
@@ -64,6 +64,7 @@
             font-size: 24px;
             outline: 0;
             width: 100%;
+            color: #BCBCBC;
             tap-highlight-color: transparent;
             touch-callout: none;
         }
@@ -248,7 +249,10 @@
         .my-notify-info, .my-notify-success, .my-notify-warning, .my-notify-error {
             padding: 10px;
             margin: 10px 0;
-
+            width: 50%;
+            align-content: center;
+            border-radius: 5px;
+            display: inline-block;
         }
 
         .my-notify-info:before, .my-notify-success:before, .my-notify-warning:before, .my-notify-error:before {
@@ -306,13 +310,20 @@
         }
     </style>
 
+    <style>
+        .nav-item {
+            width: 2cm;
+        }
+        .mt-3 {
+            width: 20cm;
+        }
+    </style>
 </head>
 
 <body>
 
 <!-- Navigation -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-    <div class="container">
         <a class="navbar-brand" href="#">STOCKಪೇಟೆ</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
                 aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
@@ -321,7 +332,7 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <img class="profile-img"
                  src="https://i.imgur.com/7mPz3Xt.png"
-                 height="50"
+                 height="70"
                  alt="">
 
             <ul class="navbar-nav ml-auto">
@@ -347,31 +358,30 @@
                         <a class="nav-link" href="/register">Register</a>
                     </li>
                 {% endif %}
-
             </ul>
         </div>
-    </div>
 </nav>
+<br><br><br><br><br>
+    <h1 class="center" align="center">Online Stock Trading System</h1>
 
 <!-- Page Content -->
 <div class="container">
     <div class="row">
         <div class="col-lg-12 text-center">
-            <h1 class="mt-5">Online Stock Trading System</h1>
             <div class="row" align="center">
                 <div class="col-sm-12" align="center">
 
                     {% for i in info %}
-                        <div class="my-notify-info">{{ i }}</div>
+                        <div class="my-notify-info center">{{ i }}</div>
                     {% endfor %}
                     {% for i in success %}
-                        <div class="my-notify-success">{{ i }}</div>
+                        <div class="my-notify-success center">{{ i }}</div>
                     {% endfor %}
                     {% for i in error %}
-                        <div class="my-notify-error">{{ i }}</div>
+                        <div class="my-notify-error center">{{ i }}</div>
                     {% endfor %}
                     {% for i in warning %}
-                        <div class="my-notify-warning">{{ i }}</div>
+                        <div class="my-notify-warning center">{{ i }}</div>
                     {% endfor %}
 
                     {% block content %}

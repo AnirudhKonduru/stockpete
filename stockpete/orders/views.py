@@ -13,6 +13,9 @@ def order_view(request):
         return render(request, "orders/order.html", {"form": form})
 
     if request.method == "POST":
+        form = buySellForm(request.POST)
+        if not form.is_valid():
+            return render(request, "orders/order.html", {'form': form, 'error': list(form.errors)})
         num = int(request.POST["num"])
         type = request.POST["type"]
         stock = Stock.objects.get(pk=request.POST["stock"])

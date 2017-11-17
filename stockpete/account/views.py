@@ -40,12 +40,13 @@ def login_view(request):
 
 
 def register_view(request):
+    form = RegisterForm()
     if not request.method == 'POST':
-        return render(request, "account/register.html", {'form': RegisterForm})
+        return render(request, "account/register.html", {'form': form})
     else:
         form = RegisterForm(request.POST)
         if not form.is_valid():
-            return render(request, "account/register.html", {'form': RegisterForm, 'error':form.errors})
+            return render(request, "account/register.html", {'form': form, 'error':form.errors})
 
         user = User.objects.create_user(username=form.cleaned_data["username"],
                                         email=form.cleaned_data["email"],
@@ -76,8 +77,11 @@ def register_view(request):
 
 
 def account_view(request):
-    account = Account.objects.get(pk=request.session["account"])
     user = request.user
+    if user.is_anonymous or user in None:
+        HttpResponseRedirect("/login")
+
+    account = Account.objects.get(pk=request.session["account"])
     customer = account.customer
 
     form = AccountForm(data={
@@ -87,6 +91,7 @@ def account_view(request):
         **{"username": user.username},
         **{"password": "--------"}
     })
+
     if not request.method == 'POST':
         return render(request, "account/account.html", {'form': form})
     else:

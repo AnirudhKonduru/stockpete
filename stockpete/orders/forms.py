@@ -10,5 +10,5 @@ class buySellForm(forms.Form):
         ("BUY", "buy"),
         ("SELL", "sell")
     ]
-    type = forms.ChoiceField(choices=TYPES)
+    type = forms.ChoiceField(choices=TYPES, widget=forms.Select(attrs={}))
     num = forms.DecimalField(decimal_places=0, max_digits=5, min_value=1)
