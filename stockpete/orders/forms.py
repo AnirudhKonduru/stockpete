@@ -5,7 +5,7 @@ from .models import Order
 
 class buySellForm(forms.Form):
     stocks_list = Stock.objects.filter()
-    stock = forms.ModelChoiceField(stocks_list)
+    stock = forms.ModelChoiceField(stocks_list, widget=forms.Select(attrs={}))
     TYPES = [
         ("BUY", "buy"),
         ("SELL", "sell")
