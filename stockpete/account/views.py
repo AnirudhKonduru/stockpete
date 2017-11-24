@@ -78,7 +78,7 @@ def register_view(request):
 
 def account_view(request):
     user = request.user
-    if user.is_anonymous or user in None:
+    if user.is_anonymous or user is None:
         HttpResponseRedirect("/login")
 
     account = Account.objects.get(pk=request.session["account"])
