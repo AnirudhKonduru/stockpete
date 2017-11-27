@@ -39,7 +39,7 @@
         }
 
         .container {
-{#            max-width: 320px;#}
+        {#            max-width: 320px;#}
             margin: 0 auto;
             padding: 20px 16px 40px 16px;
             transform: translateZ(0);
@@ -241,7 +241,7 @@
         }
 
         select {
-          color: #BCBCBC;
+            color: #BCBCBC;
         }
 
 
@@ -322,6 +322,20 @@
         .mt-3 {
             width: 20cm;
         }
+        .outer {
+            position: relative;
+            width: 500px;
+            height: 500px;
+        }
+
+        .inner {
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%,-50%);
+            width: 200px;
+            height: 200px;
+        }
+
     </style>
 </head>
 
@@ -329,45 +343,51 @@
 
 <!-- Navigation -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    {% if user.is_authenticated %}
+        <div class="navbar-brand" align="center">
+            Hello, {{ user.get_username }}.
+        </div>
+    {% endif %}
+    <div class="collapse navbar-collapse centered-div inner" id="navbarResponsive">
         <a class="navbar-brand" href="#">STOCKಪೇಟೆ</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
                 aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-            <img class="profile-img"
-                 src="https://i.imgur.com/7mPz3Xt.png"
-                 height="70"
-                 alt="">
+        <img class="profile-img"
+             src="https://i.imgur.com/7mPz3Xt.png"
+             height="55"
+             alt="">
+    </div>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
 
-            <ul class="navbar-nav ml-auto">
-
-                {% if user.is_authenticated %}
-                    <li class="nav-item">
-                        <a class="nav-link" href="/portfolio">Portfolio</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/account">Account</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/order">Place Order</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/logout">Logout</a>
-                    </li>
-                {% else %}
-                    <li class="nav-item">
-                        <a class="nav-link" href="/login">Login</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/register">Register</a>
-                    </li>
-                {% endif %}
-            </ul>
-        </div>
+            {% if user.is_authenticated %}
+                <li class="nav-item">
+                    <a class="nav-link" href="/portfolio">Portfolio</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/account">Account</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/order">Place Order</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/logout">Logout</a>
+                </li>
+            {% else %}
+                <li class="nav-item">
+                    <a class="nav-link" href="/login">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/register">Register</a>
+                </li>
+            {% endif %}
+        </ul>
+    </div>
 </nav>
 <br><br><br><br><br>
-    <h1 class="center" align="center">Online Stock Trading System</h1>
+<h1 class="center" align="center">Online Stock Trading System</h1>
 
 <!-- Page Content -->
 <div class="container">
