@@ -26,4 +26,5 @@ urlpatterns = [
     url(r'^thanks/', views.thankView),
     url(r'^portfolio/', views.portfolio_view),
     url(r'^index/', views.index),
+    url(r'^printPortfolio/', views.print_portfolio)
 ]

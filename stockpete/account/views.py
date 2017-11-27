@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.shortcuts import HttpResponseRedirect
+from django.http import HttpResponse
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
@@ -9,7 +10,43 @@ from .forms import RegisterForm, LoginForm, AccountForm
 from persons.models import Customer
 from account.models import Account, Portfolio
 from stocks.models import Stock
+
+from reportlab.pdfgen import canvas
+import pdfkit
+from django.core.files.storage import FileSystemStorage
 # Create your views here.
+
+
+def print_portfolio(request):
+    fs = FileSystemStorage()
+    if request.user.is_authenticated:
+        #return render(request, "account/login.html", {"message": str(dict(request.session))+str(request.user)})
+        account = Account.objects.get(pk=request.session["account"])
+        try:
+            own_portfolio = Portfolio.objects.filter(~Q(num=0), account=account)
+
+        except Portfolio.DoesNotExist:
+            own_portfolio = []
+        try:
+            stocks = Stock.objects.filter()
+        except Stock.DoesNotExist:
+            stocks = []
+    account = Account.objects.get(user=request.user)
+    customer = account.customer
+    http_response = render(request, "account/portfolioPDF.html", {"portfolio": own_portfolio,
+                                                  "stocks": stocks,
+                                                  "account": account,
+                                                  "customer": customer
+                                                  })
+
+    with fs.open("temp.html", "w") as f:
+        f.write(http_response.content.decode("utf-8").strip())
+
+    pdfkit.from_file("temp.html", "./temp.pdf")
+    with fs.open("./temp.pdf") as pdf:
+        response = HttpResponse(pdf, content_type='application/pdf')
+        response['Content-Disposition'] = 'attachment; filename="portfolio.pdf"'
+        return response
 
 
 def index(request):
